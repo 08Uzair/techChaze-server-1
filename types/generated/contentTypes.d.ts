@@ -372,8 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   collectionName: 'blogs';
   info: {
-    description: '';
-    displayName: 'blog';
+    displayName: 'Blog';
     pluralName: 'blogs';
     singularName: 'blog';
   };
@@ -393,7 +392,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -403,8 +402,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
 export interface ApiCartCart extends Struct.CollectionTypeSchema {
   collectionName: 'carts';
   info: {
-    description: '';
-    displayName: 'cart';
+    displayName: 'Cart';
     pluralName: 'carts';
     singularName: 'cart';
   };
@@ -418,7 +416,7 @@ export interface ApiCartCart extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::cart.cart'> &
       Schema.Attribute.Private;
-    productId: Schema.Attribute.String;
+    productId: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     totalQuantity: Schema.Attribute.BigInteger;
     updatedAt: Schema.Attribute.DateTime;
@@ -431,7 +429,7 @@ export interface ApiCartCart extends Struct.CollectionTypeSchema {
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'category';
+    displayName: 'Category';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -460,8 +458,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiGoodGood extends Struct.CollectionTypeSchema {
   collectionName: 'goods';
   info: {
-    description: '';
-    displayName: 'good';
+    displayName: 'Good';
     pluralName: 'goods';
     singularName: 'good';
   };
@@ -482,10 +479,10 @@ export interface ApiGoodGood extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::good.good'> &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.Text;
     price: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
-    rank: Schema.Attribute.BigInteger;
+    rank: Schema.Attribute.Decimal;
     stock: Schema.Attribute.BigInteger;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -507,22 +504,21 @@ export interface ApiInboxInbox extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    inboxMail: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::inbox.inbox'> &
       Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    profileId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    userId: Schema.Attribute.String;
   };
 }
 
 export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   collectionName: 'orders';
   info: {
-    description: '';
     displayName: 'order';
     pluralName: 'orders';
     singularName: 'order';
@@ -538,7 +534,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
-    productId: Schema.Attribute.String;
+    productId: Schema.Attribute.Text;
     profileId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     totalCost: Schema.Attribute.BigInteger;
@@ -569,7 +565,7 @@ export interface ApiOrderdataOrderdata extends Struct.CollectionTypeSchema {
       'api::orderdata.orderdata'
     > &
       Schema.Attribute.Private;
-    productId: Schema.Attribute.String;
+    productId: Schema.Attribute.Text;
     profileId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     totalCost: Schema.Attribute.BigInteger;
@@ -580,51 +576,9 @@ export interface ApiOrderdataOrderdata extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiProductProduct extends Struct.CollectionTypeSchema {
-  collectionName: 'products';
-  info: {
-    description: '';
-    displayName: 'product';
-    pluralName: 'products';
-    singularName: 'product';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    category: Schema.Attribute.String;
-    color: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    discount: Schema.Attribute.BigInteger;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    images: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::product.product'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    price: Schema.Attribute.BigInteger;
-    publishedAt: Schema.Attribute.DateTime;
-    rank: Schema.Attribute.Decimal;
-    stock: Schema.Attribute.BigInteger;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
   collectionName: 'profiles';
   info: {
-    description: '';
     displayName: 'profile';
     pluralName: 'profiles';
     singularName: 'profile';
@@ -633,7 +587,7 @@ export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.String;
+    address: Schema.Attribute.Text;
     city: Schema.Attribute.String;
     country: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
@@ -641,8 +595,7 @@ export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     email: Schema.Attribute.String;
     fname: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    images: Schema.Attribute.Text;
+    images: Schema.Attribute.String;
     lname: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -660,35 +613,6 @@ export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     username: Schema.Attribute.String;
-  };
-}
-
-export interface ApiSupportSupport extends Struct.CollectionTypeSchema {
-  collectionName: 'supports';
-  info: {
-    displayName: 'support';
-    pluralName: 'supports';
-    singularName: 'support';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::support.support'
-    > &
-      Schema.Attribute.Private;
-    message: Schema.Attribute.Text;
-    profileId: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -1208,9 +1132,7 @@ declare module '@strapi/strapi' {
       'api::inbox.inbox': ApiInboxInbox;
       'api::order.order': ApiOrderOrder;
       'api::orderdata.orderdata': ApiOrderdataOrderdata;
-      'api::product.product': ApiProductProduct;
       'api::profile.profile': ApiProfileProfile;
-      'api::support.support': ApiSupportSupport;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

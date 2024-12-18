@@ -11,10 +11,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "userId": {
+    "profileId": {
       "type": "string"
     },
-    "inboxMail": {
+    "message": {
       "type": "text"
     }
   }

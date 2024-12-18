@@ -4,8 +4,7 @@
   "info": {
     "singularName": "profile",
     "pluralName": "profiles",
-    "displayName": "profile",
-    "description": ""
+    "displayName": "profile"
   },
   "options": {
     "draftAndPublish": true
@@ -27,11 +26,11 @@
     "city": {
       "type": "string"
     },
+    "address": {
+      "type": "text"
+    },
     "pincode": {
       "type": "biginteger"
-    },
-    "address": {
-      "type": "string"
     },
     "phone": {
       "type": "biginteger"
@@ -48,19 +47,8 @@
     "password": {
       "type": "string"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "images": {
-      "type": "text"
+      "type": "string"
     }
   }
 }

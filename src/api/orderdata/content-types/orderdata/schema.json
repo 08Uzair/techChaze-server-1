@@ -11,8 +11,8 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "profileId": {
-      "type": "string"
+    "productId": {
+      "type": "text"
     },
     "totalCost": {
       "type": "biginteger"
@@ -20,7 +20,7 @@
     "totalQuantity": {
       "type": "biginteger"
     },
-    "productId": {
+    "profileId": {
       "type": "string"
     }
   }
