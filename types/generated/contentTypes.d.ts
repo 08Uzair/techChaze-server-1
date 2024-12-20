@@ -516,38 +516,10 @@ export interface ApiInboxInbox extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
-  collectionName: 'orders';
-  info: {
-    displayName: 'order';
-    pluralName: 'orders';
-    singularName: 'order';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    cartId: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
-      Schema.Attribute.Private;
-    productId: Schema.Attribute.Text;
-    profileId: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    totalCost: Schema.Attribute.BigInteger;
-    totalQuantity: Schema.Attribute.BigInteger;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiOrderdataOrderdata extends Struct.CollectionTypeSchema {
   collectionName: 'orderdatas';
   info: {
+    description: '';
     displayName: 'orderdata';
     pluralName: 'orderdatas';
     singularName: 'orderdata';
@@ -568,6 +540,9 @@ export interface ApiOrderdataOrderdata extends Struct.CollectionTypeSchema {
     productId: Schema.Attribute.Text;
     profileId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    statusBar: Schema.Attribute.Enumeration<
+      ['Delivered', 'Pending', 'Cancelled']
+    >;
     totalCost: Schema.Attribute.BigInteger;
     totalQuantity: Schema.Attribute.BigInteger;
     updatedAt: Schema.Attribute.DateTime;
@@ -1130,7 +1105,6 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::good.good': ApiGoodGood;
       'api::inbox.inbox': ApiInboxInbox;
-      'api::order.order': ApiOrderOrder;
       'api::orderdata.orderdata': ApiOrderdataOrderdata;
       'api::profile.profile': ApiProfileProfile;
       'plugin::content-releases.release': PluginContentReleasesRelease;

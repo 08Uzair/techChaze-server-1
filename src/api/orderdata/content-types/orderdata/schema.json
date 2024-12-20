@@ -4,7 +4,8 @@
   "info": {
     "singularName": "orderdata",
     "pluralName": "orderdatas",
-    "displayName": "orderdata"
+    "displayName": "orderdata",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,14 @@
     },
     "profileId": {
       "type": "string"
+    },
+    "statusBar": {
+      "type": "enumeration",
+      "enum": [
+        "Delivered",
+        "Pending",
+        "Cancelled"
+      ]
     }
   }
 }
